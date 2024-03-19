@@ -62,7 +62,8 @@ downloadButton.addEventListener('click', () => {
 });
 
 function handleDataAvailable(event) {
-  console.log('handleDataAvailable', event);
+  // console.log('handleDataAvailable', event);
+  console.log('handleDataAvailable');
   if (event.data && event.data.size > 0) {
     recordedBlobs.push(event.data);
   }
@@ -125,7 +126,7 @@ function stopRecording() {
 
 function handleSuccess(stream) {
   recordButton.disabled = false;
-  console.log('getUserMedia() got stream:', stream);
+  console.log('getDisplayMedia() got stream:', stream);
   window.stream = stream;
 
   const gumVideo = document.querySelector('video#gum');
@@ -143,11 +144,11 @@ function handleSuccess(stream) {
 async function init(constraints) {
   try {
     //const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    const stream = await navigator.mediaDevices.getdisplaymedia(constraints);
+    const stream = await navigator.mediaDevices.getDisplayMedia(constraints);
     handleSuccess(stream);
   } catch (e) {
-    console.error('navigator.getUserMedia error:', e);
-    errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+    console.error('navigator.getDisplayMedia error:', e);
+    errorMsgElement.innerHTML = `navigator.getDisplayMedia error:${e.toString()}`;
   }
 }
 
